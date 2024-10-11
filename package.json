@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "serverless deploy"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,9 @@
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "mongoose": "^8.7.1"
+    "mongoose": "^8.7.1",
+    "serverless-http": "^3.2.0",
+    "serverless-offline": "^14.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.8",

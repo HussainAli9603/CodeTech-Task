@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 import mongoose from "mongoose";
+import http from "http";
 import vehicleRoute from "./routes/vehicle.route.js";
 
 const app = express();
@@ -18,7 +19,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Set up MongoDB connection
-mongoose.connect('mongodb://localhost:27017/vehicles', {
+mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -29,13 +30,15 @@ app.use("/api", vehicleRoute);
 
 const PORT = process.env.PORT || 4000;
 
-// Export the app for testing
-export default app; // Export the app
 
-if (process.env.NODE_ENV !== 'test') { // Prevent starting the server during tests
-    const server = app.listen(PORT, () => {
+export default app;
+
+var httpServer =  http.createServer(app)
+
+if (process.env.NODE_ENV !== 'test') { 
+    const server = httpServer.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);
-    });
+ });
 
     // Unhandled Promise Rejection
     process.on("unhandledRejection", (err) => {

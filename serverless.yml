@@ -1,0 +1,29 @@
+service: codeteckVehicleApis
+frameworkVersion: "4"
+
+plugins: [
+ "serverless-offline"
+]
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memorySize: 2048
+  stage: dev
+  timeout: 15
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: /{proxy+}
+          method: any
+      - http:
+          path: /
+          method: any
+    environment:
+      PORT: 4000
+      DB_URI: "mongodb+srv://todolist:usman098@cluster0.metrh.mongodb.net/Ecommerce?retryWrites=true&w=majority"
+      MONGO_URI: mongodb://localhost:27017/vehicle
