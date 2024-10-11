@@ -1,15 +1,18 @@
 # CodeTeck
 
-# Backend
-npm run dev
+# Run  ::  AWS Lambda Online
+   npm run dev  OR serverless deploy
+
+# Run  ::  AWS Lambda Offline
+   serverless offline     
 
 # unit testing
  npm test -- --detectOpenHandles
 
 # api end points GET and POST MEthod
-POST =  http://localhost:4000/api/vehicles
+POST =  https://y7islf95f1.execute-api.us-east-1.amazonaws.com/dev/api/vehicles
 
-GET  = http://localhost:4000/api/vehicles
+GET  = https://y7islf95f1.execute-api.us-east-1.amazonaws.com/dev/api/vehicles
 
 # request body
 {
